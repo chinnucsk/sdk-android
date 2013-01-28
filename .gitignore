@@ -7,10 +7,10 @@ bin
 !*.jar
 !*.sh
 
+gen
+
 lint.xml
 proguard-project.txt
-
-gen
 
 # when unit testing DiskLruCache
 tests/robolectric_unit/mock_cache/journal
@@ -35,3 +35,15 @@ tests/ui/bin
 .hg
 .hgignore
 
+# IDE/build files
+.classpath
+.project
+.settings/
+target/
+.idea/
+*.iml
+*.ipr
+*.iws
+*~
+atlassian-ide-plugin.xml
+*/gen-external-apklibs/

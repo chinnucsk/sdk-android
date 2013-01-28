@@ -1,4 +1,4 @@
-PlayHaven Android SDK 1.12.1
+PlayHaven Android SDK 1.12.3
 ====================
 PlayHaven is a mobile game LTV-maximization platform which helps you take control of the business of your games.
 
@@ -41,7 +41,7 @@ Integrating the PlayHaven Android SDK is dead simple and should take no more tha
 
 ### JAR Integration
 
-1. Download the PlayHaven SDK [here](http://playhaven-sdk-builds.s3.amazonaws.com/android/jars/playhaven-1.12.1.jar) and ensure you have the latest version of the [Android Developer Tools installed](http://developer.android.com/sdk/eclipse-adt.html#updating).
+1. Download the PlayHaven SDK [here](http://playhaven-sdk-builds.s3.amazonaws.com/android/jars/playhaven-1.12.3.jar) and ensure you have the latest version of the [Android Developer Tools installed](http://developer.android.com/sdk/eclipse-adt.html#updating).
 
 2. Install the SDK into your project.
     1. If a __libs__ folder doesn't already exist, create one in your project root. Android will automatically recognize it.
@@ -293,14 +293,14 @@ request.setOnPurchaseListener([your purchase delegate]);
 request.send();
 ```
 
-* __failure of request:__ 
+* __failure of request. This method is equivalent to the `contentDidFail` handler, you can implement either:__
 ```java
 public void didFail(PHPublisherContentRequest request, String error) {
     ... your handling code here ...
 }
 ```
 
-* __failure of actual ad:__
+* __failure of actual ad. This method is equivalent to the `didFail` handler, you can implement either):__
 ```java
 public void contentDidFail(PHPublisherContentRequest request, Exception e) {
     ... your handling code here ...
