@@ -10,7 +10,6 @@ import org.json.JSONObject;
  * Simple adapter between traditional {@link com.playhaven.src.common.PHAPIRequest} listener
  * and the modern {@link v2.com.playhaven.listeners.PHContentRequestListener}. This adapter
  * only handles the base API callbacks.
- * @deprecated
  */
 public class APIRequestDelegateAdapter implements PHOpenRequestListener {
 

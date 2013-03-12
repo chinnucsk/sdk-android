@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.playhaven.androidsdk</groupId>
         <artifactId>android-sdk</artifactId>
-        <version>1.12.3</version>
+        <version>1.12.3.1</version>
     </parent>
     <artifactId>playhaven</artifactId>
     <packaging>jar</packaging>
@@ -55,11 +55,22 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Tests are nonfunctional
+        <dependency>
+            <groupId>com.playhaven.pivotallabs</groupId>
+            <artifactId>robolectric</artifactId>
+            <scope>test</scope>
+        </dependency>
+        -->
+
     </dependencies>
 
     <build>
         <finalName>playhaven-${project.version}</finalName>
 
+
+
+        <!-- For some reason, Maven isn't honoring this setting -->
         <plugins>
             <!-- Generate Version.java via the quicktag plugin-->
             <plugin>
@@ -150,6 +161,7 @@
                 </executions>
             </plugin>
 
+            <!-- We need to build with the android plugin because of robolectric -->
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
@@ -172,10 +184,16 @@
                     <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
                     <resourceDirectory>${project.basedir}/res</resourceDirectory>
 
+                    <!-- Do we need proguard? -->
+
+                    <!-- Eventually we should do some optimization on the library -->
+
+                    <!-- Generate APKLIB? -->
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
 
+            <!-- Do we need some mapping code for the eclipse m2e plugin? (ask Christa) -->
         </plugins>
 
 
@@ -187,6 +205,17 @@
         </resources>
     </build>
 
+    <!-- We currently generate the following info in the reports:
+         1. Maven info about dependencies, etc.
+         2. Test results
+         3. Generates HTML java source code for easy browsing
+         4. Recent build system changes
+         5. Tags in the code such as TODO: or @todo
+         6. test coverage via cobertura (disabled)
+         7. PMD (source code analyzer)
+         8. Emma (code coverage)
+         9. Javadoc with UML diagrams
+    -->
     <reporting>
         <!-- don't generate unnecessary docs -->
         <excludeDefaults>true</excludeDefaults>

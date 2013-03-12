@@ -10,7 +10,6 @@ import java.lang.ref.WeakReference;
 
 /**
  * An adapter for the {@link v2.com.playhaven.requests.badge.PHBadgeRequest}.
- * @deprecated
  */
 public class PHPublisherMetadataRequest extends PHBadgeRequest implements PHAPIRequest {
 

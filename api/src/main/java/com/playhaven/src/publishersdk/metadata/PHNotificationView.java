@@ -5,7 +5,6 @@ import v2.com.playhaven.views.badge.PHBadgeView;
 
 /**
  * A view that displays a notification badge.
- * @deprecated
  */
 public class PHNotificationView extends PHBadgeView {
 

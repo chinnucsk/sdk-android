@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 /**
  * Adapter from {@link v2.com.playhaven.utils.PHURLOpener.Listener} to {@link v2.com.playhaven.listeners.PHBadgeRequestListener}.
- * @deprecated
  */
 public class MetadataDelegateAdapter implements PHBadgeRequestListener {
 

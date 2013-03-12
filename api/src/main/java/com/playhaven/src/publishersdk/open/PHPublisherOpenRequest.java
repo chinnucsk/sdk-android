@@ -11,7 +11,6 @@ import java.lang.ref.WeakReference;
 /**
  * Part of shim layer to ensure backward compatibility with older games. This class
  * is an adapter for {@link v2.com.playhaven.requests.open.PHOpenRequest}.
- * @deprecated
  */
 public class PHPublisherOpenRequest extends PHOpenRequest implements PHAPIRequest {
 
@@ -21,15 +20,13 @@ public class PHPublisherOpenRequest extends PHOpenRequest implements PHAPIReques
      */
     private WeakReference<Context> context;
 
-    /** Pre-fetch listener interface.
-     * @deprecated As of 1.12.2 you should use {@link v2.com.playhaven.listeners.PHPrefetchListener}. */
+    /** Pre-fetch listener interface. */
     public static interface PrefetchListener {
         public void prefetchFinished(PHPublisherOpenRequest request);
     }
 
     /**
      * Sets the prefetch listener
-     * @deprecated As of 1.12.2 you should use {@link v2.com.playhaven.listeners.PHPrefetchListener}
      */
     public void setPrefetchListener(PrefetchListener delegate) {
         super.setPrefetchListener(new PrefetchDelegateAdapter(delegate));
@@ -37,7 +34,6 @@ public class PHPublisherOpenRequest extends PHOpenRequest implements PHAPIReques
 
     /**
      * Constructs a new open request
-     * @deprecated As of 1.12.2 you should use {@link PHOpenRequest} and the corresponding callback interfaces.
      */
     public PHPublisherOpenRequest(Context context, PHAPIRequest.Delegate delegate) {
         this(context);
@@ -52,7 +48,6 @@ public class PHPublisherOpenRequest extends PHOpenRequest implements PHAPIReques
 
     @Override
     /** Sends the content request.
-     * @deprecated As of 1.12.2. You should use {@link PHOpenRequest} instead.
      */
     public void send() {
 

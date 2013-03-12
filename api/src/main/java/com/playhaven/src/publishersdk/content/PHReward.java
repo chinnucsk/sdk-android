@@ -2,7 +2,6 @@ package com.playhaven.src.publishersdk.content;
 
 /**
  * Class adapter for {@link v2.com.playhaven.model.PHReward}.
- * @deprecated
  */
 public class PHReward extends v2.com.playhaven.model.PHReward {
 

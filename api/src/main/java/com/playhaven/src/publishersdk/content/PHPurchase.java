@@ -6,7 +6,6 @@ import com.playhaven.src.utils.EnumConversion;
 /**
  * A simple facade for the real PHPurchase class. We add the "quantity" field
  * ever though it is meaningless.
- * @deprecated As of 1.12.2 you should use {@link v2.com.playhaven.model.PHPurchase}.
  */
 public class PHPurchase extends v2.com.playhaven.model.PHPurchase {
 
@@ -35,7 +34,6 @@ public class PHPurchase extends v2.com.playhaven.model.PHPurchase {
     }
 
     /** The response from the android billing framework.
-     * @deprecated as of 1.12.2 you should use {@link v2.com.playhaven.model.PHPurchase}.
      */
     public enum Resolution {
 
@@ -56,12 +54,10 @@ public class PHPurchase extends v2.com.playhaven.model.PHPurchase {
     }
 
     /** the result from android billing.
-     * @deprecated
      */
     public Resolution resolution;
 
     /** quantity but meaningless field.
-     * @deprecated
      */
     public int quantity;
 

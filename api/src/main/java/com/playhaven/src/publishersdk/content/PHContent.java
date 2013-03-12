@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 /**
  * A simple facade for the real PHContent class.
- * @deprecated
  */
 public class PHContent extends v2.com.playhaven.model.PHContent {
 

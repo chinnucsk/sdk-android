@@ -15,12 +15,11 @@ import java.util.Hashtable;
 
 /**
  * Adapter for {@link v2.com.playhaven.requests.purchases.PHIAPTrackingRequest}.
- * @deprecated
  */
 public class PHPublisherIAPTrackingRequest extends PHIAPTrackingRequest implements PHAPIRequest {
     /**
      * Represents the quantity of the purchase.
-     * @deprecated google billing doesn't actually use this field. It's meaningless.
+     * google billing doesn't actually use this field. It's meaningless.
      */
     public int quantity = 0;
 
@@ -30,19 +29,14 @@ public class PHPublisherIAPTrackingRequest extends PHIAPTrackingRequest implemen
     /** We need a reference to our context for the send() method*/
     private WeakReference<Context> context;
 
-    /** @deprecated */
     public String product = ""; // make sure not null to avoid errors
 
-    /** @deprecated */
     public double price = 0; // Note: this is currently ignored by the server
 
-    /** @deprecated */
     public PHError error;
 
-    /** @deprecated */
     public Currency currencyLocale; // Note: this is currently ignored by the serve
 
-    /** @deprecated */
     public PHPurchase.Resolution resolution = PHPurchase.Resolution.Cancel; // default to cancel?
 
     private static Hashtable<String, String> cookies = new Hashtable<String, String>();
@@ -93,7 +87,7 @@ public class PHPublisherIAPTrackingRequest extends PHIAPTrackingRequest implemen
      * Crates a new {@link PHPublisherIAPTrackingRequest}
      * @param context a valid context for launching the request
      * @param product_id a valid product identifier
-     * @param quantity @deprecated quantity is meaningless to android billing
+     * @param quantity quantity is meaningless to android billing
      * @param resolution the result of the android billing for this id.
      */
     public PHPublisherIAPTrackingRequest(Context context, String product_id, int quantity, PHPurchase.Resolution resolution) {
@@ -116,7 +110,6 @@ public class PHPublisherIAPTrackingRequest extends PHIAPTrackingRequest implemen
 
     @Override
     /** sends the request.
-     * @deprecated
      */
     public void send() {
         // we need to pull the token/secret in

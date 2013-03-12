@@ -6,7 +6,6 @@ import java.lang.ref.WeakReference;
 
 /**
  * Simple facade for {@link v2.com.playhaven.requests.crashreport.PHCrashReport}.
- * @deprecated
  */
 public class PHCrashReport extends v2.com.playhaven.requests.crashreport.PHCrashReport implements PHAPIRequest {
     /** we need a reference to a valid context */

@@ -16,7 +16,6 @@ import java.lang.ref.WeakReference;
 
 /**
  * Class adapter for {@link v2.com.playhaven.requests.content.PHContentRequest}.
- * @deprecated you should use the new {@link PHContentRequest}.
  */
 public class PHPublisherContentRequest extends PHContentRequest implements PHAPIRequest {
 
@@ -38,7 +37,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
     };
 
 
-    /** @deprecated */
     public static interface FailureDelegate {
         //these two methods handle the request failing in general, and then the content request failing..
         public void didFail(PHPublisherContentRequest request, String error);
@@ -51,7 +49,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
      */
     private CustomizeDelegate customize_delegate;
 
-    /** @deprecated */
     public static interface CustomizeDelegate {
         public Bitmap closeButton (PHPublisherContentRequest request, PHContentView.ButtonState state);
         public int borderColor	  (PHPublisherContentRequest request, PHContent content);
@@ -60,7 +57,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
 
     /**
      * Callback interface for content listener.
-     * @deprecated As of 1.12.2 you should use {@link PHContentRequest} and associated listeners.
      */
     public static interface ContentDelegate extends PHAPIRequest.Delegate {
         public void willGetContent		(PHPublisherContentRequest request					  );
@@ -69,12 +65,10 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
         public void didDismissContent	(PHPublisherContentRequest request, PHDismissType type);
     }
 
-    /** @deprecated */
     public static interface RewardDelegate {
         public void unlockedReward(PHPublisherContentRequest request, PHReward reward);
     }
 
-    /** @deprecated */
     public static interface PurchaseDelegate {
         public void shouldMakePurchase(PHPublisherContentRequest request, PHPurchase purchase);
     }
@@ -97,9 +91,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
     ////////////////////////////////////////////
     //////////////// Listener Setters //////////
 
-    /**
-     * @deprecated
-     */
     public void setOnContentListener(ContentDelegate content_listener) {
         // if we have an existing listener, we need to carry forward the
         // failure listener
@@ -116,30 +107,18 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
         super.setOnContentListener(content_adapter = new ContentDelegateAdapter(content_listener, existing_failure_delegate, existing_request_delegate));
     }
 
-    /**
-     * @deprecated
-     */
     public void setOnRewardListener(RewardDelegate reward_listener) {
         super.setOnRewardListener(new RewardDelegateAdapter((RewardDelegate) reward_listener));
     }
 
-    /**
-     * @deprecated
-     */
     public void setOnPurchaseListener(PurchaseDelegate purchase_listener) {
         super.setOnPurchaseListener(new PurchaseDelegateAdapter((PurchaseDelegate) purchase_listener));
     }
 
-    /**
-     * @deprecated
-     */
     public void setOnCustomizeListener(CustomizeDelegate customize_listener) {
         customize_delegate = customize_listener;
     }
 
-    /**
-     * @deprecated
-     */
     public void setOnFailureListener(FailureDelegate failure_listener) {
         // if we have an existing listener, we need to carry forward the
         // content listener
@@ -159,7 +138,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
 
 
     /** Set the different content request delegates using the sneaky 'instanceof' operator. It's a bit hacky but works for our purposes.
-     * @deprecated
      */
     public void setDelegates(Object delegate) {
 
@@ -205,7 +183,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
 
     /**
      * Forwards the call to {@link PHContentRequest#didJustShowAd()}.
-     * @deprecated you should use the new 1.12.2 interface.
      */
     public static boolean didDismissContentWithin(long range) {
         return PHContentRequest.didJustShowAd();
@@ -216,8 +193,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
      * No longer functional
      * @param doOverlay flag indicating whether or not the overlay should
      *                  show immediately.
-     *
-     * @deprecated
      */
     public void setOverlayImmediately(boolean doOverlay) {
          // no - op
@@ -273,7 +248,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
 
 
     /** Pre-loads this content
-     * @deprecated
      */
     public void preload() {
         // try to grab any custom close button states
@@ -293,7 +267,6 @@ public class PHPublisherContentRequest extends PHContentRequest implements PHAPI
 
     /**
      * Sends the content request.
-     * @deprecated
      */
     @Override
     public void send() {

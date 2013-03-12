@@ -5,18 +5,15 @@ import v2.com.playhaven.interstitial.PHInterstitialActivity;
 /**
  * Simple container class for enums. This class used to be the main interstitial view
  * but has now been replaced with {@link v2.com.playhaven.interstitial.PHInterstitialActivity}.
- * @deprecated
  */
 public class PHContentView extends PHInterstitialActivity {
 
     /** determines whether or not we should display a light
      * black overlay. Currently does nothing.
-     * @deprecated
      */
     public boolean showsOverlayImmediately;
 
     /** the various button states for the custom close button images.
-     * @deprecated you should use the new 1.12.2 interface.
      */
     public static enum ButtonState {
         Down(android.R.attr.state_pressed),

@@ -6,9 +6,9 @@
 
     <groupId>com.playhaven.androidsdk</groupId>
     <artifactId>android-sdk</artifactId>
-    <version>1.12.3</version>
+    <version>1.12.3.1</version>
     <packaging>pom</packaging>
-    <name>Playhaven Android SDK</name>
+    <name>Playhaven Android SDK and Sample App</name>
     <description>PlayHaven Android SDK</description>
     <url>https://github.com/playhaven/sdk-android-2</url>
 
@@ -27,6 +27,7 @@
 
     <modules>
         <module>api</module>
+        <module>sampleapp</module>
     </modules>
 
 
@@ -54,6 +55,30 @@
                 <artifactId>android-test</artifactId>
                 <version>2.3.3</version>
             </dependency>
+            
+            <!-- Robolectric needs the maps API -->
+            <!-- We comment this out because the tests are currently
+                 nonfunctional and we are having trouble installing
+                 this dependency
+            <dependency>
+                <groupId>com.google.android.maps</groupId>
+                <artifactId>maps</artifactId>
+                <version>10_r2</version>
+                <scope>provided</scope>
+            </dependency>
+            -->
+            
+            <!-- We need the robolectric testing framework itself.
+
+            We comment this out because the tests are currently non-functional
+
+            <dependency>
+                <groupId>com.playhaven.pivotallabs</groupId>
+                <artifactId>robolectric</artifactId>
+                <version>1.2-SNAPSHOT</version>
+                <scope>test</scope>
+            </dependency>
+            -->
 
         </dependencies>
     </dependencyManagement>
@@ -91,6 +116,13 @@
                             <debug>true</debug>
                         </run>
 
+                        <!-- Do we need proguard? -->
+
+                        <!-- Eventually we should do some optimization on the library -->
+
+                        <!-- Generate APKLIB? -->
+
+                        <!-- Eventually we'll need some way to install the app on the device/emulator -->
                     </configuration>
                     <extensions>true</extensions>
                 </plugin>
@@ -118,12 +150,22 @@
             </plugins>
         </pluginManagement>
             
+        <!-- We should have some way of enforcing system requirements -->
+
+        <!-- We should copy the dependencies into the JAR for distribution -->
+        
+        <!-- We should have some way of generating site docs -->
+
+        <!-- We should have some way of updating the github site documentation -->
+
+        <!-- Use coberta? -->
     </build>
 
+    <!-- We should have a real license location -->
     <licenses>
         <license>
             <name>PlayHaven SDK Agreement</name>
-            <url>https://github.com/playhaven/sdk-android/blob/master/PlayHaven_SDK_Agreement.markdown</url>
+            <url>http://playhaven.github.com/${github.deploy.repo}/${project.version}/PlayHaven_SDK_Agreement.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -157,4 +199,59 @@
         <url>https://github.com/playhaven/sdk-android.git</url>
     </scm>
 
+    <!-- the repositories for plugins and dependencies
+    <repositories>
+        the repo containing all of the playhaven snapshots
+        <repository>
+            <id>playhaven-snapshots</id>
+            <name>PlayHaven Snapshot Repository</name>
+            <url>https://nexus.betahaven.com/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+
+        the repo containing all of the playhaven releases
+        <repository>
+            <id>playhaven-releases</id>
+            <name>PlayHaven Release Repository</name>
+            <url>https://nexus.betahaven.com/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+                should this be 'never'?
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+    -->
+
+    <!-- We need better reporting (Colberta, Code Coverage, Javadoc, UML, etc) -->
+    
+    <!-- We list two different repositories: one for development and the other for staging
+    when distributing artifacts from this project -->
+    <distributionManagement>
+        <!-- the public build artifacts -->
+        <repository>
+            <id>playhaven-releases</id>
+            <name>PlayHaven Release Repository</name>
+            <url>https://nexus.betahaven.com/nexus/content/repositories/releases/</url>
+        </repository>
+
+        <!-- the internal build server -->
+        <snapshotRepository>
+            <id>playhaven-snapshots</id>
+            <name>PlayHaven Snapshot Repository</name>
+            <url>https://nexus.betahaven.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

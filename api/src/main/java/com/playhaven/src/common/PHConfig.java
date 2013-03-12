@@ -4,7 +4,6 @@ import v2.com.playhaven.configuration.Version;
 
 /**
  * Adapter for the newly revised {@link v2.com.playhaven.configuration.PHConfiguration} class.
- * @deprecated
  */
 public class PHConfig {
     /** a shim layer for the token. The adapters for the requests will
