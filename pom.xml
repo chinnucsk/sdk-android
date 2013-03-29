@@ -1,0 +1,160 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.playhaven.androidsdk</groupId>
+    <artifactId>android-sdk</artifactId>
+    <version>1.12.4</version>
+    <packaging>pom</packaging>
+    <name>Playhaven Android SDK</name>
+    <description>PlayHaven Android SDK</description>
+    <url>https://github.com/playhaven/sdk-android-2</url>
+
+    <!--
+    Some useful resources:
+    Android build cycle: http://www.alittlemadness.com/2010/06/07/understanding-the-android-build-process/
+    -->
+    <properties>
+        <maven.min-version>3.0.3</maven.min-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <github.global.server>github</github.global.server>
+        <github.deploy.repo>sdk-android</github.deploy.repo>
+        <android.sdk.path>${env.ANDROID_HOME}</android.sdk.path>
+        <android.dependency.version>4.1.1.4</android.dependency.version>
+    </properties>
+
+    <modules>
+        <module>api</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android</artifactId>
+                <version>${android.dependency.version}</version>
+                <!-- Provided at runtime on the device -->
+                <scope>provided</scope>
+            </dependency>
+            
+            <!-- Unit testing (needed for robolectric) -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.2</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <!-- Need android testing framework -->
+            <dependency>
+                <groupId>com.google.android</groupId>
+                <artifactId>android-test</artifactId>
+                <version>2.3.3</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <!-- For building project with Android -->
+                <plugin>
+                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <artifactId>android-maven-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <sdk>
+                            <platform>10</platform>
+                            <path>${env.ANDROID_HOME}</path>
+                        </sdk>
+
+                        <test>
+                            <createReport>false</createReport>
+
+                            <!-- For now we wish to ignore the UI tests -->
+                            <packages>
+                                <package>v2.com.playhaven.test.unit</package>
+                            </packages>
+                        </test>
+
+                        <androidManifestFile>${project.basedir}/src/AndroidManifest.xml</androidManifestFile>
+                        <resourceDirectory>${project.basedir}/res</resourceDirectory>
+
+                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
+
+                        <run>
+                            <debug>true</debug>
+                        </run>
+
+                    </configuration>
+                    <extensions>true</extensions>
+                </plugin>
+
+                <!-- Attach the source to the jar distribution. We place
+                 this code in plugin management so that children can inherit it.
+                 -->
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>bundle-sources</id>
+                            <phase>package</phase>
+                            <goals>
+                                <!-- produce source artifact for main project sources -->
+                                <goal>jar-no-fork</goal>
+                                <!-- produce source artifact for project test sources -->
+                                <goal>test-jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+            
+    </build>
+
+    <licenses>
+        <license>
+            <name>PlayHaven SDK Agreement</name>
+            <url>https://github.com/playhaven/sdk-android/blob/master/PlayHaven_SDK_Agreement.markdown</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>PlayHaven</name>
+        <url>http://www.playhaven.com/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Sam Stewart</name>
+            <email>sam@playhaven.com</email>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>PivotalTracker</system>
+        <url>https://www.pivotaltracker.com/projects/197395</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://ci.playhaven.com/jenkins</url>
+    </ciManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/playhaven/sdk-android.git</connection>
+        <developerConnection>scm:git:https://github.com/playhaven/sdk-android-internal.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/playhaven/sdk-android.git</url>
+    </scm>
+
+</project>
