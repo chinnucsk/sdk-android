@@ -1,4 +1,4 @@
-PlayHaven Android SDK 1.12.4
+PlayHaven Android SDK 1.12.5
 ====================
 PlayHaven is a mobile game LTV-maximization platform which helps you take control of the business of your games.
 
@@ -28,6 +28,7 @@ Table of Contents
 * [Tips n' Tricks](#tips-and-tricks)
     * [didDismissContentWithin](#diddismisscontentwithintimerange)
 * [Integration Test Console](#integration-test-console-overview)
+* [Building The SDK](#building-the-sdk)
 
 
 Installation
@@ -41,7 +42,7 @@ Integrating the PlayHaven Android SDK is dead simple and should take no more tha
 
 ### JAR Integration
 
-1. Download the PlayHaven SDK [here](http://playhaven-sdk-builds.s3.amazonaws.com/android/jars/playhaven-1.12.4.jar) and ensure you have the latest version of the [Android Developer Tools installed](http://developer.android.com/sdk/eclipse-adt.html#updating).
+1. Download the PlayHaven SDK [here](http://playhaven-sdk-builds.s3.amazonaws.com/android/jars/playhaven-1.12.5.jar) and ensure you have the latest version of the [Android Developer Tools installed](http://developer.android.com/sdk/eclipse-adt.html#updating).
 
 2. Install the SDK into your project.
     1. If a __libs__ folder doesn't already exist, create one in your project root. Android will automatically recognize it.
@@ -434,3 +435,70 @@ The following can currently be checked:
 * IAP:
   * Check that pricing is present (IAP transaction request)
   
+
+-----------------------------------
+##Building The SDK
+
+You do not need to build the SDK in order to use it. Precompiled version are available on the [PlayHaven website](http://www.playhaven.com/sdk). However, if you desire to modify the SDK for your own use, you may do so. The SDK uses the Maven build system, which is usually pre-installed on OSX and may be installed in Linux or Windows. Many IDEs also have plugins for Maven; the instructions for using Eclipse are included below. 
+
+**Note:** Before you begin, be sure that the Android SDK has been installed properly and that your [ANDROID_HOME](http://www.sonatype.com/books/mvnref-book/reference/android-dev-sect-config-build.html) environment variable exists. 
+
+###In Linux or OSX 
+
+    git clone https://github.com/playhaven/sdk-android.git
+    cd sdk-android
+    mvn install 
+    ls api/target/
+    
+###In Eclipse
+
+**Note:** Before you begin, be sure that the ADT plugin for Eclipse has been configured properly. 
+
+1. Clone the sdk-android repository. 
+
+2. Install [m2e](http://www.eclipse.org/m2e/). m2e allows you to build Maven projects in Eclipse. It can be installed from the Eclipse Marketplace as "Maven Integration for Eclipse". 
+
+3. Install [m2e-android](https://github.com/rgladwell/m2e-android). This connector allows you to build Android Maven projects in Eclipse using m2e. It can be installed from the Eclipse Marketplace as "Android Configurator for M2E". 
+
+4. In Eclipse, select "File > Import > Maven > Existing Maven Projects" and open the root folder of the cloned repository. You should see two pom.xml configurations available. Check both boxes. If this is your first time opening a Maven project, it might take several minutes to download and install all the neccesary Maven artifacts. Click Next, then Finish. It may prompt you to install other m2e connectors; if it does then these are necessary. There will be an "Plugin execution not covered" error about quicktag, you'll fix that next. 
+
+5. Build 
+  1. In the playhaven Eclipse project, open pom.xml. Add the following snippet inside the ```<build>``` element: 
+  
+```xml
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.m2e</groupId>
+				<artifactId>lifecycle-mapping</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<lifecycleMappingMetadata>
+						<pluginExecutions>
+							<pluginExecution>
+								<pluginExecutionFilter>
+									<groupId>net.mgorski.quicktag</groupId>
+									<artifactId>quicktag</artifactId>
+									<versionRange>[2.1.2,)</versionRange>
+									<goals>
+										<goal>quicktag</goal>
+									</goals>
+								</pluginExecutionFilter>
+								<action>
+									<execute />
+								</action>
+							</pluginExecution>
+						</pluginExecutions>
+					</lifecycleMappingMetadata>
+				</configuration>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+```
+	
+   2. Now right-click on the project in the Package Explorer and select Maven > Update Project. 
+   3. The m2e plugin may incorrectly set your Java Compiler level for the project. If it does, there will be errors regarding the ```@Override``` annotation. Edit the project properties > Java Compiler options to use a JDK Compliance level of 1.6 or greater. 
+   4. Select "Run As" > "Maven install". 
+
+Your jar should be in api/target/. 
+

@@ -67,6 +67,7 @@ public class PHPurchase extends v2.com.playhaven.model.PHPurchase {
      * @param context The context for sending the message
      */
     public void reportResolution(Resolution resolution, Activity context) {
+    	this.resolution = resolution;
         super.reportAndroidBillingResult(EnumConversion.convertToNewBillingResult(resolution), context);
     }
 

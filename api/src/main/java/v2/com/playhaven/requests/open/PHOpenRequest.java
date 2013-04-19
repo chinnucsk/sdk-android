@@ -2,6 +2,9 @@ package v2.com.playhaven.requests.open;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.playhaven.src.utils.PHStringUtil;
 import v2.com.playhaven.cache.PHCache;
 import v2.com.playhaven.configuration.PHConfiguration;
@@ -105,6 +108,13 @@ public class PHOpenRequest extends PHAPIRequest implements PHPrefetchTaskListene
 
 		// Note: ordering is important! You *must* call session.start() *before* sending the request
 	    session.start();
+	    
+	    // Saves the info to shared prefs now. 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(PHSession.SSUM_PREF,session.getTotalTime());
+        editor.putLong(PHSession.SCOUNT_PREF, session.getSessionCount());
+        editor.commit();
 
 	    super.send(context);
 	    

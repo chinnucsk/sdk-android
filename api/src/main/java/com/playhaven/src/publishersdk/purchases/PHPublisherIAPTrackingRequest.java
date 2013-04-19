@@ -97,8 +97,13 @@ public class PHPublisherIAPTrackingRequest extends PHIAPTrackingRequest implemen
 
         purchase.product 		= product_id;
         purchase.resolution 	= EnumConversion.convertToNewBillingResult(resolution);
+        purchase.quantity		= quantity;
+        
+        // set the values for the tracker, since setPurchase doesn't 
+        this.resolution = resolution;
+        this.product = product_id;
+        this.quantity = quantity;
 
-        // we don't use the quantity field
         super.setPurchase(purchase);
     }
 

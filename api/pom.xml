@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.playhaven.androidsdk</groupId>
         <artifactId>android-sdk</artifactId>
-        <version>1.12.4</version>
+        <version>1.12.5</version>
     </parent>
     <artifactId>playhaven</artifactId>
     <packaging>jar</packaging>
@@ -184,6 +184,7 @@
                 <directory>${project.build.directory}/generated-sources/quicktag/</directory>
             </resource>
         </resources>
+        
     </build>
 
     <reporting>
@@ -211,7 +212,6 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-
 
             <!-- generate test results -->
             <plugin>

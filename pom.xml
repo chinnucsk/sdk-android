@@ -6,7 +6,7 @@
 
     <groupId>com.playhaven.androidsdk</groupId>
     <artifactId>android-sdk</artifactId>
-    <version>1.12.4</version>
+    <version>1.12.5</version>
     <packaging>pom</packaging>
     <name>Playhaven Android SDK</name>
     <description>PlayHaven Android SDK</description>
@@ -54,7 +54,7 @@
                 <artifactId>android-test</artifactId>
                 <version>2.3.3</version>
             </dependency>
-
+            
         </dependencies>
     </dependencyManagement>
 
@@ -132,23 +132,6 @@
         <name>PlayHaven</name>
         <url>http://www.playhaven.com/</url>
     </organization>
-
-    <developers>
-        <developer>
-            <name>Sam Stewart</name>
-            <email>sam@playhaven.com</email>
-        </developer>
-    </developers>
-
-    <issueManagement>
-        <system>PivotalTracker</system>
-        <url>https://www.pivotaltracker.com/projects/197395</url>
-    </issueManagement>
-
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>https://ci.playhaven.com/jenkins</url>
-    </ciManagement>
 
     <scm>
         <connection>scm:git:https://github.com/playhaven/sdk-android.git</connection>

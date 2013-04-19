@@ -18,12 +18,6 @@ import java.util.Currency;
 public class PHPurchase implements Parcelable {
 
     public enum AndroidBillingResult {
-    	
-    	// retained to prevent legacy integration issues
-    	Buy 	("buy"),
-    	Cancel  ("cancel"),
-    	Error 	("error"), 
-    	
         Bought 	   ("buy"),
         Cancelled  ("cancel"),
         Failed     ("error");
@@ -195,7 +189,13 @@ public class PHPurchase implements Parcelable {
 
         if (this.tag != null && this.tag.equals(PHContent.PARCEL_NULL))
             this.tag = null;
+        
+        String resCandidate = in.readString();
+		this.resolution = (resCandidate.equals(PHContent.PARCEL_NULL)) ? 
+				null : AndroidBillingResult.valueOf(resCandidate);
 
+        if (this.resolution != null && this.resolution.equals(PHContent.PARCEL_NULL))
+            this.resolution = null;
 	}
 	
 	public int describeContents() {
@@ -208,6 +208,7 @@ public class PHPurchase implements Parcelable {
 		out.writeString(receipt == null ? PHContent.PARCEL_NULL : receipt);
 		out.writeString(callback == null ? PHContent.PARCEL_NULL : callback);
 		out.writeString(tag == null ? PHContent.PARCEL_NULL : tag);
+		out.writeString(resolution == null ? PHContent.PARCEL_NULL : resolution.toString());
 	}
 }
 
