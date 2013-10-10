@@ -1,5 +1,12 @@
 PlayHaven Android SDK 1.12.5
 ====================
+
+<table>
+<tr><th>DEPRECATION NOTICE - October 2013</th></tr>
+<tr><td><p>The PlayHaven Android SDK 1.12.5 has been deprecated. We will continue to support games currently integrated with Android SDK 1.12.5 until October 2014.</p>
+<p>Please use the new <a href="https://github.com/playhaven/sdk-android-2" rel="nofollow">Android SDK (version 2)</a>, which was built from scratch to enhance performance and functionality, and is loaded with new features like support for push notifications.</p></td></tr>
+</table>
+
 PlayHaven is a mobile game LTV-maximization platform which helps you take control of the business of your games.
 
 Acquire, retain, re-engage, and monetize your players with the help of PlayHaven's powerful marketing platform. Integrate once and embrace the flexibility of the web as you build, schedule, deploy, and analyze your in-game promotions and monetization in real-time through PlayHaven's easy-to-use, web-based dashboard. 
